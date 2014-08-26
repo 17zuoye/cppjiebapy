@@ -3046,9 +3046,6 @@ namespace swig {
 }
 
 
-#include "mixsegment.h"
-
-
 #include <iostream>
 
 #if PY_VERSION_HEX >= 0x03020000
@@ -3420,6 +3417,9 @@ SWIG_AsVal_ptrdiff_t (PyObject * obj, ptrdiff_t *val)
 
 
 #include <vector>
+
+
+#include "mixsegment.h"
 
 
 namespace swig {  
