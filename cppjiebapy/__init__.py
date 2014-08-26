@@ -7,12 +7,7 @@ from functools import wraps
 
 import mixsegment
 
-try:
-    import whoosh
-    from analyzer import ChineseAnalyzer, Tokenize
-except ImportError:
-    # install whoosh to using ChineseAnalyzer
-    pass
+from analyzer import ChineseAnalyzer
 
 SEG_LOCK = threading.RLock()
 SEG_INIT = False
