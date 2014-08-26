@@ -1,9 +1,9 @@
-import os,sys
-#sys.argv.extend(['--compiler','g++'])
-#os.envirom["CXX"] = 'g++-xx'
+import os, sys
+from setuptools import setup, Extension
+#from distutils import ccompiler
 
-from distutils.core import setup, Extension
-from distutils import ccompiler
+assert "CppJiebaDir" in os.environ, \
+       "e.g. export CppJiebaDir=$HOME/github/aszxqw/cppjieba in shell."
 
 sources = ['cppjiebapy/mixsegment.i','cppjiebapy/mixsegment.cpp']
 
@@ -17,7 +17,7 @@ module_jieba = Extension('_mixsegment',
                 define_macros = [('NO_FILTER',None)],
                 extra_compile_args=['--std=c++0x','-O3'],
                 #extra_link_args=['-std=c++0x -O3'],
-                include_dirs=['/usr/include/CppJieba'],
+                include_dirs=[os.environ['CppJiebaDir'], ],
                 #libraries=['cppjieba'],
                 #library_dirs=['/usr/lib/CppJieba']
                 )
@@ -30,4 +30,5 @@ setup(name='cppjiebapy',
         packages=['cppjiebapy'],
         package_data={'cppjiebapy':['*.py','*.i','*.cpp','*.cxx','dict/*']},
         ext_modules=[module_jieba],
+        install_requires=['Whoosh'],
         )

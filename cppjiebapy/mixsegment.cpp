@@ -45,8 +45,8 @@ public:
 		{
 			return false;
 		}
-		this->mix_seg = new MixSegment(_mpSegDict, _hmmSegDict);
-		return this->mix_seg->init();
+		this->mix_seg = new MixSegment();
+		return this->mix_seg->init(_mpSegDict, _hmmSegDict);
 	}
 	~MixSegmentWrap()
 	{
@@ -92,7 +92,7 @@ bool mix_segment_cut_type(const std::string& str, vector<string>& res)
 {
 	MixSegment *pseg = GMIXSEG.mix_seg;
 	assert(pseg != NULL);
-	return pseg->cut_type(str, res);
+	return pseg->cut(str, res);
 }
 
 void mix_segment_dispose()
